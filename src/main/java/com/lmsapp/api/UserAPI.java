@@ -33,7 +33,7 @@ public class UserAPI {
 	@Path("/signup")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String signUp(String inputjson) throws JsonMappingException, JsonProcessingException {
+	public String signUp(String inputjson) throws JsonMappingException, JsonProcessingException, SQLException {
 		ObjectMapper mapper = new ObjectMapper();
 		User user = mapper.readValue(inputjson, User.class);
 		userService.saveUser(user);
@@ -92,7 +92,7 @@ public class UserAPI {
 	@Path("/createAdmin")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public LMSResponse createAdmin(String inputjson) throws JsonMappingException, JsonProcessingException {
+	public LMSResponse createAdmin(String inputjson) throws JsonMappingException, JsonProcessingException, SQLException {
 		JSONObject jsonObject = new JSONObject(inputjson);
 		String name = jsonObject.getString("name");
 		String emailid = jsonObject.getString("emailid");

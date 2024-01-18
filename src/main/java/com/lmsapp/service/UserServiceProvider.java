@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.json.JSONObject;
 
@@ -20,11 +21,22 @@ public class UserServiceProvider implements UserService{
 	DBService dbservice = new DBServiceProvider();
 
 	@Override
-	public void saveUser(User user) {
+	public void saveUser(User user) throws SQLException {
+		Connection con = DBConnection.getConnection();
 		try {
-			dbservice.insert(user);
+			String query = "insert into user values(default, ?, ?, ?, ?, ?)";
+			PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, user.getEmailid());
+			ps.setString(2, user.getPhone());
+			ps.setString(3, user.getPassword());
+			ps.setBoolean(4, true);
+			ps.setString(5, user.getUsertype());
+			ps.execute();
+			ps.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			con.close();
 		}
 	}
 
@@ -46,15 +58,30 @@ public class UserServiceProvider implements UserService{
 	}
 
 	@Override
-	public User getUserByMail(String email) {
-		String query = SQLQueries.USER_BY_EMAIL.replace("{emailid}", email);
+	public User getUserByMail(String email) throws SQLException {
+		Connection con = DBConnection.getConnection();
+		User user = null;
 		try {
-			User user = (User) dbservice.getByQuery(query);
-			return user;
+			String query = "select * from user where emailid='"+email+"'";
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				user = new User();
+				user.setUserid(rs.getInt("userid"));
+				user.setEmailid(rs.getString("emailid"));
+				user.setPhone(rs.getString("phone"));
+				user.setPassword(rs.getString("password"));
+				user.setStatus(rs.getBoolean("status"));
+				user.setUsertype(rs.getString("usertype"));
+			}
+			ps.close();
+			rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+		} finally {
+			con.close();
 		}
+		return user;
 	}
 
 	@Override

@@ -8,9 +8,9 @@ import com.lmsapp.util.LMSResponse;
 
 public interface UserService {
 
-	public void saveUser(User user);
+	public void saveUser(User user) throws SQLException;
 	public User getUser(long id);
-	public User getUserByMail(String email);
+	public User getUserByMail(String email) throws SQLException;
 	public User login(String emailid, String password) throws SQLException;
 	public LMSResponse createUserAdmin(User user, Admin admin);
 }
