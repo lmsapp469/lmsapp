@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row" style="padding-top:20px;">
+		<div class="col">
+			<input type="file" name="fileInput" id="fileInput2"
+				onchange="angular.element(this).scope().uploadFile(this)"
+				style="display: none;" accept="*/*" />
+			<button class="btn btn-light uploadS3FID" title="Upload File">
+				&nbsp; Upload File</button>
+			<script type="text/javascript">
+				$(".uploadS3FID").click(function() {
+					$("input[id='fileInput2']").click();
+				});
+			</script>
+		</div>
+	</div>
+
+</div>

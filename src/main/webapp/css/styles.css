@@ -1,0 +1,12 @@
+.container {
+    max-width: 1300px;
+}
+
+.btn-primary{
+	background: #820900;
+	--bs-btn-hover-bg: #7a2d27;
+	--bs-btn-hover-border-color: #7a2d27;
+}
+.input-icon-color{
+	color:#820900;
+}

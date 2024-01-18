@@ -1,0 +1,42 @@
+<div class="row header" style="padding:10px;">
+	<div class="col-2">
+		<img alt="Logo" src="icons/lmslogo.png" style="width: 100px;">
+	</div>
+	<div class="col-8" align="center">
+		<span style="font-weight: bold; font-size: xx-large;">LMS
+			Application</span>
+	</div>
+	<div class="col-2" align="right">
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle" type="button"
+				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">ramakrishna</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" href="#">Profile</a> <a
+					class="dropdown-item" href="#" ng-click="logout()">Logout</a> <a
+					class="dropdown-item" href="#">Something else here</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row menus">
+	<div class="col">
+		<div>
+			<div ng-include="'html/menu.html'"></div>
+		</div>
+	</div>
+</div>
+<div class="row content" style="padding-top: 20px;">
+	<div class="col">
+		<div>
+			<div ng-include="'html/content_institute.html'"></div>
+		</div>
+	</div>
+</div>
+
+
+<style>
+.header{
+	padding-top:10px;
+}
+</style>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated 10-Jan-2024, 10:26:21 am by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="lmsapp" name="com.lmsapp.User" optimistic-lock="none" table="user">
+        <id name="userid" type="int">
+            <column name="userid"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="emailid" type="string">
+            <column length="200" name="emailid" not-null="true" unique="true"/>
+        </property>
+        <property name="phone" type="string">
+            <column length="20" name="phone" unique="true"/>
+        </property>
+        <property name="password" type="string">
+            <column length="255" name="password" not-null="true"/>
+        </property>
+        <property name="status" type="boolean">
+            <column name="status" not-null="true"/>
+        </property>
+        <property name="usertype" type="string">
+            <column length="20" name="usertype" not-null="true"/>
+        </property>
+        <property name="createddate" type="timestamp">
+            <column length="19" name="createddate" not-null="true"/>
+        </property>
+        <property name="updateddate" type="timestamp">
+            <column length="19" name="updateddate" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="admins" table="admin">
+            <key>
+                <column name="userid" not-null="true"/>
+            </key>
+            <one-to-many class="Admin"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="systemadmins" table="systemadmin">
+            <key>
+                <column name="userid" not-null="true"/>
+            </key>
+            <one-to-many class="Systemadmin"/>
+        </set>
+    </class>
+</hibernate-mapping>

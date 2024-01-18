@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated 10-Jan-2024, 10:26:21 am by Hibernate Tools 6.3.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="lmsapp" name="com.lmsapp.Systemadmin" optimistic-lock="none" table="systemadmin">
+        <id name="sysid" type="int">
+            <column name="sysid"/>
+            <generator class="assigned"/>
+        </id>
+        <many-to-one class="User" fetch="select" name="user">
+            <column name="userid" not-null="true"/>
+        </many-to-one>
+        <property name="createddate" type="timestamp">
+            <column length="19" name="createddate" not-null="true"/>
+        </property>
+        <property name="updateddate" type="timestamp">
+            <column length="19" name="updateddate" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

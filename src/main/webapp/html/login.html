@@ -1,0 +1,149 @@
+<div class="main_div">
+	<div ng-if="!signupPage">
+		<p
+			style="text-align: center; margin-top: -20px; margin-bottom: -18px;">
+			<img src="icons/noun-login-6395054-820900.svg" alt="logo"
+				style="width: 75px;">
+		</p>
+		<!-- <div class="form-title" text-align="left">Login</div> -->
+		<div class="username">
+			<label><b>Email</b></label> <input type="text"
+				placeholder="Enter Email" class="form-control" ng-model="username"
+				required> <i class="fa fa-user fa-lg input-icon-color"></i>
+		</div>
+		<div class="password">
+			<label><b>Password</b></label> <input type="password"
+				placeholder="Enter Password" class="form-control"
+				ng-model="password" required> <i
+				class="fa fa-key fa-lg input-icon-color"></i>
+		</div>
+		<div class="btn-actions" style="padding-top: 10px;">
+			<button class="btn btn-primary" ng-click="login(username, password)"
+				style="padding-right: 40px; padding-left: 40px;">Login</button>
+			<span>Click to </span> <a href="#" ng-click="signupClick()">Sign
+				Up</a>
+		</div>
+		<div class="btn-actions" style="padding-top: 10px;">
+			<a href="#" ng-click="forgotPwdClicked()">Forgot Password?</a>
+		</div>
+	</div>
+	
+	<div ng-if="signupPage">
+		<p
+			style="text-align: center; margin-top: -20px; margin-bottom: -18px;">
+			<img src="icons/noun-login-6395054-820900.svg" alt="logo"
+				style="width: 75px;">
+		</p>
+		<!-- <div class="form-title" text-align="left">Login</div> -->
+		<div class="username">
+			<label><b>Email</b></label> <input type="text"
+				placeholder="Enter Email" class="form-control" ng-model="username"
+				required> <i class="fas fa-envelope fa-lg input-icon-color"></i>
+		</div>
+		<div class="phone">
+			<label><b>Mobile</b></label> <input type="text"
+				placeholder="Enter Mobile" class="form-control" ng-model="mobile"
+				required> <i class="fa fa-mobile-phone fa-lg input-icon-color"></i>
+		</div>
+		<div class="username">
+			<label><b>Who</b></label> 
+			<select class="form-control" ng-model="usertype">
+			  <option value="STUDENT" selected>Student</option>
+			  <option value="TEACHER">Teacher</option>
+			  <option value="ADMIN">Organiser</option>
+			  <option value="GRADER">Grader</option>
+			</select>
+			<i class="fa fa-user fa-lg input-icon-color"></i>
+			<!-- <input type="text"
+				placeholder="Enter Mobile" class="form-control" ng-model="mobile"
+				required> <i class="fa fa-mobile-phone fa-lg input-icon-color"></i> -->
+		</div>
+		<!-- <div class="username">
+			<label><b>Firstname</b></label> <input type="text"
+				placeholder="Enter Firstname" class="form-control" ng-model="fname"
+				> <i class="fa fa-user fa-lg input-icon-color"></i>
+		</div>
+		<div class="username">
+			<label><b>Lastname</b></label> <input type="text"
+				placeholder="Enter Lastname" class="form-control" ng-model="lname"
+				> <i class="fa fa-user fa-lg input-icon-color"></i>
+		</div> -->
+		<div class="password">
+			<label><b>Password</b></label> <input type="password"
+				placeholder="Enter Password" class="form-control"
+				ng-model="password" required> <i
+				class="fa fa-key fa-lg input-icon-color"></i>
+		</div>
+		<div class="password">
+			<label><b>Confirm Password</b></label> <input type="password"
+				placeholder="Confirm Password" class="form-control"
+				ng-model="confirmpassword" required> <i
+				class="fa fa-key fa-lg input-icon-color"></i>
+		</div>
+		<div class="btn-actions" style="padding-top: 10px;">
+			<button class="btn btn-primary" ng-click="signup(username, mobile, usertype, password, confirmpassword)"
+				style="padding-right: 40px; padding-left: 40px;">Signup</button>
+		</div>
+ 		<div class="btn-actions" style="padding-top: 10px;">
+ 			<span>Already have account? </span>
+			<a href="#" ng-click="loginClick()">Login</a>
+		</div>
+	</div>
+</div>
+<style>
+.main_div {
+	width: 365px;
+	padding: 30px;
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+	box-shadow: 5px 5px 20px #00000047;
+	border-radius: 30px;
+	opacity: 1;
+	margin-top: 25px;
+	left: 50%;
+	top: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+}
+
+label {
+	font-weight: bold;
+}
+
+input[type=text], input[type=password] {
+	width: 100%;
+	padding-left: 45px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+.username {
+	position: relative;
+}
+
+.username i {
+	position: absolute;
+	left: 15px;
+	top: 40px;
+}
+
+.password {
+	position: relative;
+}
+
+.password i {
+	position: absolute;
+	left: 15px;
+	top: 40px;
+}
+.phone {
+	position: relative;
+}
+
+.phone i {
+	position: absolute;
+	left: 15px;
+	top: 40px;
+}
+</style>
+

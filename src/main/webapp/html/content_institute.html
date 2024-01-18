@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="col-4">
+		<span style="font-weight: bold;">Institute List</span>
+	</div>
+	<div class="col-8" align="right">
+		<button class="btn btn-primary pointer"
+			style="margin-top: -10px; margin-bottom: 5px; margin-right: -10px;"
+			title="Create Institue" ng-click="addInstitute()">Add Institute
+		</button>
+	</div>
+</div>
+<div class="row">
+	<div class="col-9" align="right">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Created</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="inst in institutes">
+					<td><a href="#" ng-click="selectInstitute(inst)">{{inst.name}}</a></td>
+					<td>{{inst.created}}</td>
+					<td>{{inst.status}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-3" style="background: #8209000a;">
+		<div ng-if="selectedInstitute!=undefined && !addInstituteClicked">
+			<h3>{{selectedInstitute.name}}</h3>
+			<p>Registered : 1 Jan 2024</p>
+			<p>Total Courses : 15</p>
+			<p>Courses Completed : 8</p>
+			<p>Courses Inprogress : 7</p>
+		</div>
+		<div ng-if="selectedInstitute==undefined && addInstituteClicked">
+			<h3 align="center" style="margin-top:10px;">Create Institute</h3>
+			<input type="text" placeholder="Institute Name" class="form-control" ng-model="instituteName">
+			<input type="text" placeholder="Email" class="form-control" ng-model="emailId">
+			<input type="text" placeholder="Phone" class="form-control" ng-model="phone">
+			<button class="btn btn-primary" style="margin-top:10px;" ng-click="createInstitute(instituteName,emailId,phone)">Create</button>
+		</div>
+	</div>
+</div>
