@@ -12,6 +12,6 @@ public interface UserService {
 	public User getUser(long id);
 	public User getUserByMail(String email) throws SQLException;
 	public User login(String emailid, String password) throws SQLException;
-	public LMSResponse createUserAdmin(User user, Admin admin);
+	public LMSResponse createUserAdmin(User user, Admin admin) throws SQLException;
 	//Hi from Nipun
 }

@@ -118,7 +118,7 @@ lmsapp.controller("basectrl", ["$scope", "$http", "$location", "$rootScope", fun
 	}
 	
 	$scope.createInstitute = function(instName, email, phone){
-		var req = {name:instName, emailid:email, phone:phone};
+		var req = {name:instName, emailid:email, phone:phone, usertype:"ADMIN"};
 		postServerCall(req, $rootScope.APIURL + "/createAdmin", function(response) {
 			console.log(response);
 		})

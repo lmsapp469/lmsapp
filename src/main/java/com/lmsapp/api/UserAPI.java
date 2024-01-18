@@ -102,6 +102,7 @@ public class UserAPI {
 		user.setEmailid(emailid);
 		user.setPhone(phone);
 		user.setPassword("1234567890");
+		user.setUsertype(jsonObject.getString("usertype"));
 		userService.saveUser(user);
 		User result = userService.getUserByMail(user.getEmailid());
 		
@@ -109,7 +110,7 @@ public class UserAPI {
 		admin.setName(name);
 		admin.setUser(result);
 		
-		LMSResponse res = userService.createUserAdmin(user, admin);
+		LMSResponse res = userService.createUserAdmin(result, admin);
 		return res;
 	}
 }

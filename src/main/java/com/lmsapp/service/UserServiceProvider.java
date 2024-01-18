@@ -24,7 +24,7 @@ public class UserServiceProvider implements UserService{
 	public void saveUser(User user) throws SQLException {
 		Connection con = DBConnection.getConnection();
 		try {
-			String query = "insert into user values(default, ?, ?, ?, ?, ?)";
+			String query = "insert into user values(default, ?, ?, ?, ?, ?, default, default)";
 			PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, user.getEmailid());
 			ps.setString(2, user.getPhone());
@@ -112,10 +112,25 @@ public class UserServiceProvider implements UserService{
 	}
 
 	@Override
-	public LMSResponse createUserAdmin(User user, Admin admin) {
+	public LMSResponse createUserAdmin(User user, Admin admin) throws SQLException {
 		LMSResponse resp = null;
+		
+		Connection con = DBConnection.getConnection();
 		try {
-			dbservice.insert(admin);
+			String query = "insert into admin values(default, ?, ?, ?, default, default)";
+			PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			ps.setInt(1, user.getUserid());
+			ps.setString(2, admin.getName());
+			ps.setString(3, admin.getDescription());
+			ps.execute();
+			ps.close();
+		} catch (SQLException e) {
+			 handleSQLException(e);
+		} finally {
+			con.close();
+		}
+		
+		try {
 			JSONObject json = new JSONObject();
 			json.put("name", admin.getName());
 			json.put("created", admin.getCreateddate());
@@ -128,5 +143,16 @@ public class UserServiceProvider implements UserService{
 		}
 		return resp;
 	}
+	
+	private void handleSQLException(SQLException e) {
+        System.err.println("SQL Exception: " + e.getMessage());
+
+        // Log the SQL state and vendor code for more information
+        System.err.println("SQL State: " + e.getSQLState());
+        System.err.println("Vendor Code: " + e.getErrorCode());
+
+        // You can log additional details or take appropriate action based on your application's needs
+        e.printStackTrace();
+    }
 
 }
